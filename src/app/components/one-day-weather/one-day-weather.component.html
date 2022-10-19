@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <div>
+    <div class="city">{{ currentWeather.name }}</div>
+    <div>{{ getDate() }}</div>
+    <img  class="icon" src="{{ getImage(currentWeather.weather[0].icon) }}" alt="" />
+    <div>{{ currentWeather.weather[0].main }}</div>
+  </div>
+
+  <div>
+    <div class="temp">{{ getRounding(currentWeather.main.temp) }} &deg;C</div>
+    <div>Real feel: {{ getRounding(currentWeather.main.feels_like) }} &deg;C</div>
+    <div>Wind: {{getRounding(convertSpeedWind(currentWeather.wind.speed))}} km/h</div>
+    <div>Humidity: {{currentWeather.main.humidity}} %</div>
+  </div>
+
+  <div>
+    <div>Sunrise: {{ getTime(currentWeather.sys.sunrise) }}</div>
+    <div>Sunset: {{ getTime(currentWeather.sys.sunset) }}</div>
+  </div>
+</div>
+
+<div>
+  <button mat-raised-button  (click)="getForecast(cityName)" >5-day forecast</button>
+</div>
+
+<app-five-day-forecast
+  *ngIf="getFlag()"
+  [forecastWeather]="forecastWeather"
+  [arrayResponse]="arrayResponse"
+  [cityName]="cityName"
+  ></app-five-day-forecast>
+
+

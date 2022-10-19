@@ -1,0 +1,21 @@
+<header>
+  <h2>MY WEATHER</h2>
+
+  <div>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Enter city name</mat-label>
+      <input [(ngModel)]="cityName" matInput placeholder="Ex. Minsk" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-raised-button (click)="getWeather(cityName)">Search</button>
+  </div>
+</header>
+
+<app-one-day-weather
+  *ngIf="currentWeather"
+  [currentWeather]="currentWeather"
+  [cityName]="cityName"
+></app-one-day-weather>
+

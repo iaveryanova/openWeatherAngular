@@ -1,0 +1,27 @@
+.city {
+  font-size: 50px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  width: 700px;
+  background-color: rgba($color: #ffffff, $alpha: 0.7);
+  padding: 20px;
+  justify-content: space-between;
+
+}
+
+.temp {
+  font-size: 50px;
+}
+
+.icon {
+  width: 100px;
+}
+
+button {
+  background-color: black;
+  color: white;
+  margin: 20px 0px;
+}
