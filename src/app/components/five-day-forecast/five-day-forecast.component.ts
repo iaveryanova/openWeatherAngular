@@ -16,12 +16,10 @@ export class FiveDayForecastComponent implements OnInit, OnChanges {
 
   constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
-    // throw new Error('Method not implemented.');
-    console.log(this.arrayResponse, 'out3');
   }
 
   ngOnInit(): void {
-    console.log(this.arrayResponse, 'out2');
+
   }
 
   getImage(iconCode: string) {
@@ -44,7 +42,6 @@ export class FiveDayForecastComponent implements OnInit, OnChanges {
     let nowDate = new Date(unix_timestamp * 1000);
     let tomorrow = nowDate.setDate(nowDate.getDate() + 1);
     let tomorrow_zero = nowDate.setHours(0);
-    console.log(unix_timestamp)
     return nowDate.getTime() / 1000;
 
 

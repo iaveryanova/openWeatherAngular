@@ -68,7 +68,7 @@ export class OneDayWeatherComponent implements OnInit {
           console.log(arr);
           this.forecastWeather = response;
           this.arrayResponse = {day:arr};
-          console.log(this.arrayResponse, 'out1');
+          console.log(this.arrayResponse);
         });
   }
 
@@ -84,7 +84,6 @@ export class OneDayWeatherComponent implements OnInit {
     let nowDate = new Date(unix_timestamp * 1000);
     let tomorrow = nowDate.setDate(nowDate.getDate() + 1);
     let tomorrow_zero = nowDate.setHours(0);
-    console.log(nowDate.toLocaleString())
     return nowDate.getTime() / 1000;
 
 
