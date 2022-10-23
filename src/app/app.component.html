@@ -1,21 +1,37 @@
 <header>
   <h2>MY WEATHER</h2>
 
-  <div>
-    <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Enter city name</mat-label>
-      <input [(ngModel)]="cityName" matInput placeholder="Ex. Minsk" />
-    </mat-form-field>
-  </div>
+  <form [formGroup]="enterCity">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Enter city name</mat-label>
+        <input
+        [(ngModel)]="cityName"
+        matInput
+        placeholder="Ex. Minsk"
+        (keypress)="onKeyPress($event)"
+        formControlName="city"
+        />
+      </mat-form-field>
 
-  <div>
-    <button mat-raised-button (click)="getWeather(cityName)">Search</button>
-  </div>
+      <span
+      class="error"
+      *ngIf="city?.invalid && (city?.dirty || city?.touched) && !city?.errors?.['required']"
+      >Invalid input</span>
+
+
+      <!-- <span
+      class="error"
+      *ngIf="city?.errors?.['required'] && (city?.dirty || city?.touched)"
+      >City name required</span> -->
+
+      <button mat-raised-button (click)="getWeather(cityName)" [disabled]="!cityName">Search</button>
+  </form>
 </header>
 
+<div class="notFound" *ngIf="isError"></div>
+
 <app-one-day-weather
-  *ngIf="currentWeather"
+  *ngIf="(!isError && currentWeather)"
   [currentWeather]="currentWeather"
   [cityName]="cityName"
 ></app-one-day-weather>
-
