@@ -23,7 +23,9 @@ export class OneDayWeatherComponent implements OnInit {
   }
 
   getTime(unix_timestamp: number) {
-    let date = new Date(unix_timestamp * 1000);
+    const offSet = new Date(unix_timestamp).getTimezoneOffset() * 60 * 1000;
+    const curOffSet = (this.currentWeather.timezone * 1000) + offSet;
+    let date = new Date((unix_timestamp * 1000) + curOffSet);
     let hours = date.getHours();
     let minutes = '0' + date.getMinutes();
     let formattedTime = hours + ':' + minutes.slice(-2);
@@ -34,11 +36,11 @@ export class OneDayWeatherComponent implements OnInit {
     return `http://openweathermap.org/img/w/${iconCode}.png`;
   }
 
-  getDate() {
-    let today = new Date();
-    let now = today.toLocaleString();
-    return now;
-  }
+  // getDate() {
+  //   let today = new Date();
+  //   let now = today.toLocaleString();
+  //   return now;
+  // }
 
   getRounding(number: number) {
     return Math.round(number);
@@ -85,7 +87,6 @@ export class OneDayWeatherComponent implements OnInit {
     let tomorrow = nowDate.setDate(nowDate.getDate() + 1);
     let tomorrow_zero = nowDate.setHours(0);
     return nowDate.getTime() / 1000;
-
 
   }
 
