@@ -15,6 +15,7 @@ export class OneDayWeatherComponent implements OnInit {
   @Input() cityName: string = '';
   forecastWeather!: IForecast;
   arrayResponse!: IForecast2;
+  options!: {}
 
   constructor(private weatherService: WeatherService) {}
 
@@ -36,11 +37,10 @@ export class OneDayWeatherComponent implements OnInit {
     return `http://openweathermap.org/img/w/${iconCode}.png`;
   }
 
-  // getDate() {
-  //   let today = new Date();
-  //   let now = today.toLocaleString();
-  //   return now;
-  // }
+  getDate(unix_timestamp: number) {
+    let date = new Date(unix_timestamp * 1000);
+    return date.toLocaleDateString();
+  }
 
   getRounding(number: number) {
     return Math.round(number);
@@ -51,12 +51,14 @@ export class OneDayWeatherComponent implements OnInit {
       this.weatherService
         .getFiveDayForecastbyCityName(this.cityName)
         .subscribe((response: IForecast) => {
+          console.log(response);
           let arr = [];
           let arrDay = [];
           let firstTime = response.list[0].dt;
           let nextDay = this.getTomorrow(firstTime);
 
           for (let i = 0; i < response.list.length; i++) {
+
             if (response.list[i].dt >= nextDay) {
               arr.push({list:arrDay});
               arrDay = [];
@@ -64,8 +66,12 @@ export class OneDayWeatherComponent implements OnInit {
               nextDay = this.getTomorrow(firstTime);
             }
 
+
             arrDay.push(response.list[i]);
 
+          }
+          if (arrDay.length > 0) {
+            arr.push({list:arrDay});
           }
           console.log(arr);
           this.forecastWeather = response;

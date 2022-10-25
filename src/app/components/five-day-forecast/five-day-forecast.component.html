@@ -5,13 +5,14 @@
       <div class="city_day">
         <div *ngIf="forecastWeather.city">{{ forecastWeather.city.name }}</div>
         <div>{{ getDate(day.list[0].dt) }}</div>
+        <div><span>{{ getDayOfWeek(day.list[0].dt)}}</span></div>
       </div>
 
-      <div *ngFor="let item of day.list" class="time">
+      <div *ngFor="let item of day.list" class="timing">
         <div>{{ getTime(item.dt) }}</div>
         <img class="icon" src="{{ getImage(item.weather[0].icon) }}" alt="" />
         <div>{{item.weather[0].main}}</div>
-        <div>{{ getRounding(item.main.temp) }} &deg;C</div>
+        <div><span>{{ getRounding(item.main.temp) }} &deg;C</span></div>
       </div>
 
     </div>

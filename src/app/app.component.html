@@ -18,17 +18,13 @@
       *ngIf="city?.invalid && (city?.dirty || city?.touched) && !city?.errors?.['required']"
       >Invalid input</span>
 
-
-      <!-- <span
-      class="error"
-      *ngIf="city?.errors?.['required'] && (city?.dirty || city?.touched)"
-      >City name required</span> -->
-
       <button mat-raised-button (click)="getWeather(cityName)" [disabled]="!cityName">Search</button>
   </form>
 </header>
 
+
 <div class="notFound" *ngIf="isError"></div>
+
 
 <app-one-day-weather
   *ngIf="(!isError && currentWeather)"

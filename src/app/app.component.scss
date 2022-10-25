@@ -1,14 +1,10 @@
 header {
   display: flex;
   align-items: center;
-  width: 750px;
-
-  h2 {
-    margin-right: 300px;
-  }
+  max-width: 750px;
+  justify-content: space-between;
 
   form {
-    width: 300px;
     display: flex;
     position: relative;
     justify-content: space-between;
@@ -30,8 +26,6 @@ header {
     margin: 0.25em 0;
 
   }
-
-
 }
 
 .notFound {

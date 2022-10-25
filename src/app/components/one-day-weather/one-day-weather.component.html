@@ -1,21 +1,30 @@
 <div class="wrapper">
   <div>
     <div class="city">{{ currentWeather.name }}</div>
+    <div>{{ getDate(currentWeather.dt) }}</div>
     <div>{{ getTime(currentWeather.dt) }}</div>
     <img  class="icon" src="{{ getImage(currentWeather.weather[0].icon) }}" alt="" />
     <div>{{ currentWeather.weather[0].main }}</div>
   </div>
 
-  <div>
+  <div class="column2">
     <div class="temp">{{ getRounding(currentWeather.main.temp) }} &deg;C</div>
     <div>Real feel: {{ getRounding(currentWeather.main.feels_like) }} &deg;C</div>
     <div>Wind: {{getRounding(convertSpeedWind(currentWeather.wind.speed))}} km/h</div>
     <div>Humidity: {{currentWeather.main.humidity}} %</div>
   </div>
 
-  <div>
-    <div>Sunrise: {{ getTime(currentWeather.sys.sunrise) }}</div>
-    <div>Sunset: {{ getTime(currentWeather.sys.sunset) }}</div>
+  <div class="column3">
+    <div>
+      <div>Sunrise: {{ getTime(currentWeather.sys.sunrise) }}</div>
+      <div><img src="../../../assets/sunrice.png" alt=""></div>
+    </div>
+
+    <div>
+      <div>Sunset: {{ getTime(currentWeather.sys.sunset) }}</div>
+      <div><img src="../../../assets/sunset.png" alt=""></div>
+    </div>
+
   </div>
 </div>
 

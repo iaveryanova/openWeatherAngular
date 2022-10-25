@@ -49,8 +49,14 @@ export class FiveDayForecastComponent implements OnInit, OnChanges {
 
   getDate(unix_timestamp: number) {
     let date = new Date(unix_timestamp * 1000);
-
     return date.toLocaleDateString();
+  }
+
+  getDayOfWeek(unix_timestamp: number) {
+    let a = new Date(unix_timestamp * 1000);
+    let days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    let dayOfWeek = days[a.getDay()];
+    return dayOfWeek;
   }
 }
 
