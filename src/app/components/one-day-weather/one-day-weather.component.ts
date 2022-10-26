@@ -51,7 +51,7 @@ export class OneDayWeatherComponent implements OnInit {
       this.weatherService
         .getFiveDayForecastbyCityName(this.cityName)
         .subscribe((response: IForecast) => {
-          console.log(response);
+          // console.log(response);
           let arr = [];
           let arrDay = [];
           let firstTime = response.list[0].dt;
@@ -73,10 +73,10 @@ export class OneDayWeatherComponent implements OnInit {
           if (arrDay.length > 0) {
             arr.push({list:arrDay});
           }
-          console.log(arr);
+          // console.log(arr);
           this.forecastWeather = response;
           this.arrayResponse = {day:arr};
-          console.log(this.arrayResponse);
+          // console.log(this.arrayResponse);
         });
   }
 

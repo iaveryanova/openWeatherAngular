@@ -7,7 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   cityName: string = '';
@@ -15,25 +15,24 @@ export class AppComponent implements OnInit {
   forecastWeather!: IForecast;
   isError: boolean = false;
 
-
   constructor(private weatherService: WeatherService) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  getWeather() {
+    this.weatherService.flag = false;
+    this.weatherService.getWeatherbyCityName(this.cityName).subscribe({
+      next: (response: IWeather) => {
+        this.isError = false;
+        this.currentWeather = response;
+      },
+      error: (err: Error) => {
+        this.isError = true;
+      },
+    });
   }
 
-  getWeather(cityName: string) {
-    this.weatherService.flag = false;
-    this.weatherService.getWeatherbyCityName(this.cityName).subscribe((response: IWeather) => {
-      this.isError = false;
-      this.currentWeather = response;
-      console.log(response);
-    },
-    (err: Error) => {
-      console.log(err);
-      this.isError = true;
-    }
-    )
-  }
+
 
   public enterCity = new FormGroup({
     city: new FormControl('', [
@@ -45,13 +44,17 @@ export class AppComponent implements OnInit {
   public onKeyPress(e: any) {
     if (e.keyCode === 13 && e.target.value) {
       this.cityName = e.target.value;
-      this.getWeather(this.cityName);
+      this.getWeather();
     }
+  }
+
+  public onSubmit(){
+    this.cityName = '' + this.enterCity.get('city')?.value;
+    this.getWeather();
   }
 
   get city() {
     return this.enterCity.get('city');
   }
-
 
 }

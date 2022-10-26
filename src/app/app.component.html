@@ -5,7 +5,6 @@
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Enter city name</mat-label>
         <input
-        [(ngModel)]="cityName"
         matInput
         placeholder="Ex. Minsk"
         (keypress)="onKeyPress($event)"
@@ -18,7 +17,7 @@
       *ngIf="city?.invalid && (city?.dirty || city?.touched) && !city?.errors?.['required']"
       >Invalid input</span>
 
-      <button mat-raised-button (click)="getWeather(cityName)" [disabled]="!cityName">Search</button>
+      <button mat-raised-button (click)="onSubmit()" [disabled]="!city">Search</button>
   </form>
 </header>
 
