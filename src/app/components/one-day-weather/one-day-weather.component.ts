@@ -65,14 +65,11 @@ export class OneDayWeatherComponent implements OnInit {
               firstTime = response.list[i].dt;
               nextDay = this.getTomorrow(firstTime);
             }
-
-
             arrDay.push(response.list[i]);
-
           }
-          if (arrDay.length > 0) {
-            arr.push({list:arrDay});
-          }
+          // if (arrDay.length > 0) {
+          //   arr.push({list:arrDay});
+          // }
           // console.log(arr);
           this.forecastWeather = response;
           this.arrayResponse = {day:arr};
@@ -94,6 +91,11 @@ export class OneDayWeatherComponent implements OnInit {
     let tomorrow_zero = nowDate.setHours(0);
     return nowDate.getTime() / 1000;
 
+  }
+
+  getCurrentTime() {
+    let now = new Date().toLocaleTimeString().slice(0,-3);
+    return now;
   }
 
 }

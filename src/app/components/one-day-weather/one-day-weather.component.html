@@ -1,8 +1,8 @@
 <div class="wrapper">
   <div>
     <div><span>{{ currentWeather.name }}</span></div>
-    <div>{{ getDate(currentWeather.dt) }}</div>
-    <div>{{ getTime(currentWeather.dt) }}</div>
+    <div >{{ getDate(currentWeather.dt) }}</div>
+    <div class="currentTime">{{ getCurrentTime()}}</div>
     <img  class="icon" src="{{ getImage(currentWeather.weather[0].icon) }}" alt="" />
     <div>{{ currentWeather.weather[0].main }}</div>
   </div>
